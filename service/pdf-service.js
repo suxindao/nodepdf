@@ -52,6 +52,12 @@ const stl_34 = _ => {
     }
 }
 
+const stl_35 = _ => {
+    return {
+        "characterSpacing": px(-0.035),
+        "wordSpacing ": px(-0.035),
+    }
+}
 const stl_39 = _ => px(0.600167)
 
 const stl_40 = _ => {
@@ -61,6 +67,38 @@ const stl_40 = _ => {
     }
 }
 const stl_41 = _ => px(0.600167)
+
+const stl_62 = _ => px(0.450126)
+
+const stl_63 = _ => {
+    return {
+        "characterSpacing": px(-0.0429),
+        "wordSpacing ": px(-0.0429),
+    }
+}
+
+const stl_64 = _ => {
+    return {
+        "characterSpacing": px(-0.0415),
+        "wordSpacing ": px(-0.0415),
+    }
+}
+
+const stl_66 = _ => {
+    return {
+        "characterSpacing": px(-0.0452),
+        "wordSpacing ": px(-0.0452),
+    }
+}
+
+const stl_67 = _ => px(0.550153)
+
+const stl_70 = _ => {
+    return {
+        "characterSpacing": px(-0.0403),
+        "wordSpacing ": px(-0.0403),
+    }
+}
 
 function buildPDF(dataCallback, endCallback) {
 
@@ -96,12 +134,7 @@ function buildPDF(dataCallback, endCallback) {
     doc.font(`${__dirname}/simsun.ttf`)
         .fontSize(stl_17())
         .fillColor('#000000')
-        .text(`开户银行:`, px(2.6251), px(3.4415), Object.assign({}, stl_18()))
-
-    doc.font(`${__dirname}/simsun.ttf`)
-        .fontSize(stl_17())
-        .fillColor('#000000')
-        .text(`南京分行郁金香路支行`, px(2.6251) + px(4), px(3.4415), Object.assign({}, stl_18()))
+        .text(`开户银行:南京分行郁金香路支行`, px(2.6251), px(3.4415), Object.assign({}, stl_18()))
 
     doc.font(`${__dirname}/simsun.ttf`)
         .fontSize(stl_17())
@@ -116,14 +149,16 @@ function buildPDF(dataCallback, endCallback) {
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_21())
         .fillColor('#000000')
-        .text(`A/COpeningBank`, px(2.6251), px(4.5037), Object.assign({}, stl_22()))
+        .text(`A/C OpeningBank`, px(2.6251), px(4.5037), Object.assign({}, stl_22()))
 
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_21())
         .fillColor('#000000')
         .text(`Statement CoveredPeriod`, px(34.484), px(4.5037), Object.assign({}, stl_28()))
 
-    doc.path('M 33,68 L 590,68 L 590,67.9 L 33,67.9')
+    //第一条线
+    doc.lineWidth(0.1)
+        .path('M 33,68 L 590,68 L 590,67.9 L 33,67.9')
         .fillAndStroke('red', 'red')
         .stroke()
 
@@ -140,17 +175,17 @@ function buildPDF(dataCallback, endCallback) {
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_21())
         .fillColor('#000000')
-        .text(`A/CNo.`, px(2.6251), px(6.4042), Object.assign({}, stl_22()))
+        .text(`A/C No.`, px(2.6251), px(6.4042) - px(0.3), Object.assign({}, stl_22()))
 
     doc.font(`${__dirname}/simsun.ttf`)
         .fontSize(stl_17())
         .fillColor('#000000')
-        .text(`货币:人民币`, px(40), px(5.342), Object.assign({}, stl_18()))
+        .text(`货币:人民币`, px(42.5862) - px(2.5), px(5.342), Object.assign({}, stl_18()))
 
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_21())
         .fillColor('#000000')
-        .text(`Currency`, px(40), px(6.4042), Object.assign({}, stl_34()))
+        .text(`Currency`, px(42.9363) - px(2.5), px(6.4042) - px(0.3), Object.assign({}, stl_34()))
 
     doc.font(`${__dirname}/simsun.ttf`)
         .fontSize(stl_17())
@@ -165,19 +200,21 @@ function buildPDF(dataCallback, endCallback) {
     doc.font(`${__dirname}/simsun.ttf`)
         .fontSize(stl_17())
         .fillColor('#000000')
-        .text(`上页余额:`, px(39.1853), px(6.9425), Object.assign({}, stl_18()))
+        .text(`上页余额:`, px(39.1853) - px(2.5), px(6.9425), Object.assign({}, stl_18()))
 
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_17())
         .fillColor('#000000')
-        .text(`1,082,508.02`, px(39.1853) + px(5), px(6.9425), Object.assign({}, stl_20()))
+        .text(`1,082,508.02`, px(39.1853) + px(3.5) - px(2.5), px(6.9425), Object.assign({}, stl_20()))
 
     doc.font(`${__dirname}/times.ttf`)
         .fontSize(stl_21())
         .fillColor('#000000')
-        .text(`Last balance`, px(39.4854), px(8.0047), Object.assign({}, stl_22()))
+        .text(`Last balance`, px(39.4854) - px(2.5), px(8.0047), Object.assign({}, stl_22()))
 
-    doc.path('M 33, ' + (px(8.0047) + px(0.8)) + ' L 590, ' + (px(8.0047) + px(0.8)) + ' L 590,' + (px(8.0047) + px(0.8) - 0.01) + ' L 33,' + (px(8.0047) + px(0.8) - 0.01) + '')
+    //第二条线
+    doc.lineWidth(0.01)
+        .path('M 33, ' + (px(8.0047) + px(0.8)) + ' L 590, ' + (px(8.0047) + px(0.8)) + ' L 590,' + (px(8.0047) + px(0.8) - 0.01) + ' L 33,' + (px(8.0047) + px(0.8) - 0.01) + '')
         .fillAndStroke('black', 'black')
         .stroke()
 
@@ -250,6 +287,87 @@ function buildPDF(dataCallback, endCallback) {
         .fontSize(stl_41())
         .fillColor('#000000')
         .text('CounterpartyAccountName', px(39.1853), px(9.80), Object.assign({}))
+
+    //第三条线
+    doc.lineWidth(0.1)
+        .path('M 33, ' + (px(9.80) + px(1)) + ' L 590, ' + (px(9.80) + px(1)) + ' L 590,' + (px(9.80) + px(1) - 0.01) + ' L 33,' + (px(9.80) + px(1) - 0.01) + '')
+        .fillAndStroke('black', 'black')
+        .stroke()
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_21())
+        .fillColor('#000000')
+        .text(`20220502`, px(3.2252), px(11), Object.assign({}, stl_35()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_62())
+        .fillColor('#000000')
+        .text(`网银费用`, px(7.7015), px(11), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_39())
+        .fillColor('#000000')
+        .text(`网上银行服务费`, px(17.5292), px(11.2), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_21())
+        .fillColor('#000000')
+        .text(`-25.00`, px(30.933), px(11), Object.assign({}, stl_63()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_21())
+        .fillColor('#000000')
+        .text(`1,082,483.02`, px(34.3339), px(11), Object.assign({}, stl_64()))
+
+    //第四条线
+    doc.lineWidth(0.1)
+        .path('M 33, ' + (px(11) + px(2)) + ' L 590, ' + (px(11) + px(2)) + ' L 590,' + (px(11) + px(2) - 0.01) + ' L 33,' + (px(11) + px(2) - 0.01) + '')
+        .fillAndStroke('black', 'black')
+        .stroke()
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_17())
+        .fillColor('#000000')
+        .text(`第1页/共1页 打印时间：2023年07月06日 11时54分`, px(2.6251), px(12.8441) + px(0.2), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_17())
+        .fillColor('#000000')
+        .text(`招商银行股份有限公司`, px(36.9352), px(13.605), Object.assign({}, stl_18()))
+
+    //page-footer 页脚
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_17())
+        .fillColor('#000000')
+        .text(`特别提示`, px(2.6251), px(14.0564) - px(0.2), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/times.ttf`)
+        .fontSize(stl_21())
+        .fillColor('#000000')
+        .text('Special Notice', px(2.6251) + px(3.5), px(14.0564) - px(0.1), Object.assign({}, stl_66()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_67())
+        .fillColor('#000000')
+        .text(`若每月5日前未收到对账单，请务必于当月10日前与开户行联系，多谢合作。`, px(3.6253), px(14.6674) + px(0.2), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/times.ttf`)
+        .fontSize(stl_41())
+        .fillColor('#000000')
+        .text('If you do not receive the Statement of Account by the 5th day of each month, please contact the account opening bank before the 10th day of the month, Thank you for your kind cooperation.', px(3.6253), px(15.4568), Object.assign({}, stl_70()))
+
+    doc.font(`${__dirname}/simsun.ttf`)
+        .fontSize(stl_67())
+        .fillColor('#000000')
+        .text(`若本行于发出此单后10日内仍未收到您的回复，则一切账项均作实论`, px(3.6253), px(16.0678) + px(0.2), Object.assign({}, stl_18()))
+
+    doc.font(`${__dirname}/times.ttf`)
+        .fontSize(stl_41())
+        .fillColor('#000000')
+        .text('If no discrepancies are reported from you within 10 day of this statement, it will be deemed to be the final record.', px(3.6253), px(16.8571), Object.assign({}, stl_63()))
+
+    //印章
+    doc.image(`${__dirname}/img_01.png`, px(34.3339), px(12), {width: 205 * 0.5, height: 108 * 0.5})
 
     doc.end();
 }
