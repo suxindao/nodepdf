@@ -162,7 +162,8 @@ function buildPDF(data, dataCallback, endCallback) {
 
         //第一条线
         doc.lineWidth(0.1)
-            .path('M 33,68 L 590,68 L 590,67.9 L 33,67.9')
+            // .path('M 33,68 L 590,68 L 590,67.9 L 33,67.9')
+            .path('M 33,68 L 590,68')
             .fillAndStroke('red', 'red')
             .stroke()
 
@@ -218,7 +219,7 @@ function buildPDF(data, dataCallback, endCallback) {
 
         //第二条线
         doc.lineWidth(0.01)
-            .path('M 33, ' + (px(8.0047) + px(0.8)) + ' L 590, ' + (px(8.0047) + px(0.8)) + ' L 590,' + (px(8.0047) + px(0.8) - 0.01) + ' L 33,' + (px(8.0047) + px(0.8) - 0.01) + '')
+            .path('M 33, ' + (px(8.0047) + px(0.8)) + ' L 590, ' + (px(8.0047) + px(0.8)) + '')
             .fillAndStroke('black', 'black')
             .stroke()
 
@@ -294,7 +295,7 @@ function buildPDF(data, dataCallback, endCallback) {
 
         //第三条线
         doc.lineWidth(0.1)
-            .path('M 33, ' + (px(9.80) + px(1)) + ' L 590, ' + (px(9.80) + px(1)) + ' L 590,' + (px(9.80) + px(1) - 0.01) + ' L 33,' + (px(9.80) + px(1) - 0.01) + '')
+            .path('M 33, ' + (px(9.80) + px(1)) + ' L 590, ' + (px(9.80) + px(1)) + '')
             .fillAndStroke('black', 'black')
             .stroke()
 
@@ -383,7 +384,8 @@ function buildPDF(data, dataCallback, endCallback) {
 
         //第四条线
         doc.lineWidth(0.1)
-            .path('M 33, ' + (px(11) + px(2) + add_item) + ' L 590, ' + (px(11) + px(2) + add_item) + ' L 590,' + (px(11) + px(2) + add_item - 0.01) + ' L 33,' + (px(11) + px(2) + add_item - 0.01) + '')
+            // .path('M 33, ' + (px(11) + px(2) + add_item) + ' L 590, ' + (px(11) + px(2) + add_item) + ' L 590,' + (px(11) + px(2) + add_item - 0.01) + ' L 33,' + (px(11) + px(2) + add_item - 0.01) + '')
+            .path('M 33, ' + (px(11) + px(2) + add_item) + ' L 590, ' + (px(11) + px(2) + add_item) + '')
             .fillAndStroke('black', 'black')
             .stroke()
 
