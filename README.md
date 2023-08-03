@@ -2,6 +2,8 @@
 
 1. `npm i`
 2. `npm run dev` starts up a hot-reload express webserver on port 8080
+3. http://localhost:8080 下载pdf文件
+4. http://localhost:8080/csv 下载csv文件
 
 ### 转换逻辑
 
