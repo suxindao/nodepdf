@@ -1,7 +1,51 @@
 const express = require('express');
 const pdfService = require('../service/pdf-service');
+const Parser = require('json2csv').Parser
 
 const router = express.Router();
+
+// 列头与数据
+const fields = [
+    {label: '日期', value: 'date'},
+    {label: '业务类型', value: 'biz_type'},
+    {label: '收入笔数', value: 'income_count'},
+    {label: '收入金额(元)', value: 'income_amount'},
+    {label: '支出笔数', value: 'outcome_count'},
+    {label: '支出金额(元)', value: 'outcome_amount'},
+    {label: '收支净额(元)', value: 'balance'},
+];
+const data = [
+    {
+        date: '2023/7/29',
+        biz_type: '交易',
+        income_count: '2',
+        income_amount: '10499',
+        outcome_count: '2',
+        outcome_amount: '62.99',
+        balance: '10436.01',
+    },
+    {
+        date: '合计',
+        biz_type: '-',
+        income_count: '2',
+        income_amount: '10499',
+        outcome_count: '2',
+        outcome_amount: '62.99',
+        balance: '10436.01',
+    }
+]
+router.get('/csv', (req, res, next) => {
+    const json2csv = new Parser({fields})
+    const csv = json2csv.parse(data)
+    // iconv-lite: Pure JS character encoding conversion 转码，防止中文乱码
+    const iconv = require('iconv-lite')
+    const newCsv = iconv.encode(csv, 'gbk')
+
+    res.header('Content-Type', 'text/csv')
+    res.attachment('电子账单.csv')
+    return res.send(newCsv)
+})
+
 router.get('/', (req, res, next) => {
     const stream = res.writeHead(200, {
         'Content-Type': 'application/pdf',
@@ -11,8 +55,8 @@ router.get('/', (req, res, next) => {
     const pages_data = [
         {
             BillPeriod: ['20220501', '20220531'],
-            BillPeriodBalance:'1,082,508.02',
-            items:[
+            BillPeriodBalance: '1,082,508.02',
+            items: [
                 {
                     Date: '20220502',
                     BusinessType: '网银费用',
@@ -45,8 +89,8 @@ router.get('/', (req, res, next) => {
         },
         {
             BillPeriod: ['20220601', '20220631'],
-            BillPeriodBalance:'1,082,508.02',
-            items:[
+            BillPeriodBalance: '1,082,508.02',
+            items: [
                 {
                     Date: '20220502',
                     BusinessType: '网银费用',
