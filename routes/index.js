@@ -41,10 +41,6 @@ router.get('/csv', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-    const stream = res.writeHead(200, {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment;filename=invoice.pdf`,
-    })
 
     const pages_data = [
         {
@@ -98,6 +94,11 @@ router.get('/', (req, res, next) => {
             PrintTime: '2023年07月06日 11时54分'
         }
     ]
+
+    const stream = res.writeHead(200, {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment;filename=invoice.pdf`,
+    })
 
     pdfService.buildPDF(
         pages_data,
