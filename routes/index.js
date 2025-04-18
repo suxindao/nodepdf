@@ -58,7 +58,7 @@ router.get('/', (req, res, next) => {
                 },
                 {
                     Date: '20220908',
-                    BusinessType: '网银费用',
+                    BusinessType: '网银网银费用',
                     BillNo: '',
                     Description: '网上企业银行-网上企业银行服务费',
                     DebitCreditAmount: '-25.00',

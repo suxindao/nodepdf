@@ -67,7 +67,7 @@ const stl_40 = _ => {
         "wordSpacing ": px(0.0833),
     }
 }
-const stl_41 = _ => px(0.600167)
+const stl_41 = _ => px(0.6)
 
 const stl_62 = _ => px(0.450126)
 
@@ -153,12 +153,12 @@ function buildPDF(data, dataCallback, endCallback) {
         doc.font(`${__dirname}/times.ttf`)
             .fontSize(stl_21())
             .fillColor('#000000')
-            .text(`A/C OpeningBank`, px(2.6251), px(4.5037), Object.assign({}, stl_22()))
+            .text(`A/C Opening Bank`, px(2.6251), px(4.5037), Object.assign({}, stl_22()))
 
         doc.font(`${__dirname}/times.ttf`)
             .fontSize(stl_21())
             .fillColor('#000000')
-            .text(`Statement CoveredPeriod`, px(34), px(4.5037), Object.assign({}, stl_28()))
+            .text(`Statement Covered Period`, px(34), px(4.5037), Object.assign({}, stl_28()))
 
         //第一条线
         doc.lineWidth(0.1)
@@ -215,7 +215,7 @@ function buildPDF(data, dataCallback, endCallback) {
         doc.font(`${__dirname}/times.ttf`)
             .fontSize(stl_21())
             .fillColor('#000000')
-            .text(`Last balance`, px(39.4854) - px(2.5), px(8.0047), Object.assign({}, stl_22()))
+            .text(`Last Balance`, px(39.4854) - px(2.5), px(8.0047), Object.assign({}, stl_22()))
 
         //第二条线
         doc.lineWidth(0.01)
@@ -271,7 +271,7 @@ function buildPDF(data, dataCallback, endCallback) {
         doc.font(`${__dirname}/times.ttf`)
             .fontSize(stl_41())
             .fillColor('#000000')
-            .text('Debit/CreditAmount', px(27.9821) - px(3), px(9.80), Object.assign({}))
+            .text('Debit/Credit Amount', px(27.9821) - px(3), px(9.80), Object.assign({}))
 
         doc.font(`${__dirname}/simsun.ttf`)
             .fontSize(stl_39())
@@ -291,7 +291,7 @@ function buildPDF(data, dataCallback, endCallback) {
         doc.font(`${__dirname}/times.ttf`)
             .fontSize(stl_41())
             .fillColor('#000000')
-            .text('CounterpartyAccountName', px(39.1853) - px(2.8), px(9.80), Object.assign({}))
+            .text('Counterparty Account Name', px(39.1853) - px(2.8), px(9.80), Object.assign({}))
 
         //第三条线
         doc.lineWidth(0.1)
@@ -312,12 +312,15 @@ function buildPDF(data, dataCallback, endCallback) {
                 )
 
             doc.font(`${__dirname}/simsun.ttf`)
-                .fontSize(stl_62())
+                .fontSize(stl_39())
                 .fillColor('#000000')
                 .text(`${item['BusinessType']}`,
-                    px(7.7015),
+                    px(6.2015),
                     item_y + add_item,
-                    Object.assign({}, stl_18())
+                    Object.assign({
+                        width: stl_39() * 7,
+                        align: 'center'
+                    }, stl_18())
                 )
 
             doc.font(`${__dirname}/simsun.ttf`)
@@ -380,7 +383,7 @@ function buildPDF(data, dataCallback, endCallback) {
             add_item += px(1.2)
         }
 
-        add_item -= px(1.2) //最后一行不需要再加了
+        add_item -= px(1) //最后一行不需要再加了
 
         //第四条线
         doc.lineWidth(0.1)
@@ -392,12 +395,22 @@ function buildPDF(data, dataCallback, endCallback) {
         doc.font(`${__dirname}/simsun.ttf`)
             .fontSize(stl_17())
             .fillColor('#000000')
-            .text(`第${i + 1}页/共${data.length}页 打印时间：${page_data['PrintTime']}`, px(2.6251), px(12.8441) + px(0.2) + add_item, Object.assign({}, stl_18()))
+            .text(`第${i + 1}页/共${data.length}页`, px(2.6251), px(12.8441) + px(0.2) + add_item, Object.assign({}, stl_18()))
 
         doc.font(`${__dirname}/simsun.ttf`)
             .fontSize(stl_17())
             .fillColor('#000000')
-            .text(`招商银行股份有限公司`, px(36.9352), px(13.605) + add_item, Object.assign({}, stl_18()))
+            .text(`期末余额:${page_data['EndBalance']}`, px(2.6251 * 5), px(12.8441) + px(0.2) + add_item, Object.assign({}, stl_18()))
+
+        doc.font(`${__dirname}/simsun.ttf`)
+            .fontSize(stl_17())
+            .fillColor('#000000')
+            .text(`打印时间：${page_data['PrintTime']}`, px(2.6251 * 8.5), px(12.8441) + px(0.2) + add_item, Object.assign({}, stl_18()))
+
+        doc.font(`${__dirname}/simsun.ttf`)
+            .fontSize(stl_17())
+            .fillColor('#000000')
+            .text(`招商银行股份有限公司`, px(36.9352), px(12.8441) + px(0.2) + add_item, Object.assign({}, stl_18()))
 
         //page-footer 页脚
         doc.font(`${__dirname}/simsun.ttf`)
